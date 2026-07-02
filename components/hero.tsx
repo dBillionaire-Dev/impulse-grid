@@ -66,8 +66,9 @@ export function Hero() {
               href="https://tally.so/r/q4YP12"
               target="_blank"
               rel="noopener noreferrer"
-              className={cn(buttonVariants(), 
-                "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border border-pink-500/30 px-6 md:px-8 py-4 md:py-6 text-sm md:text-base rounded-lg w-full sm:w-auto"
+              className={cn(
+                buttonVariants(),
+                "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border border-pink-500/30 px-6 md:px-8 py-4 md:py-6 text-sm md:text-base rounded-lg w-full sm:w-auto",
               )}
             >
               Let&apos;s Work Together
@@ -76,9 +77,7 @@ export function Hero() {
               variant="outline"
               className="border-border hover:bg-card px-6 md:px-8 py-4 md:py-6 text-sm md:text-base rounded-lg w-full sm:w-auto"
             >
-            <Link href="/portfolio">
-              See My Work →
-            </Link>
+              <Link href="/portfolio">See My Work →</Link>
             </Button>
           </div>
 
@@ -101,7 +100,7 @@ export function Hero() {
             {/* Portrait image */}
             <div className="relative z-20 rounded-full overflow-hidden w-48 h-64 sm:w-64 sm:h-80 mx-auto border-2 border-purple-500/50 bg-black/20 backdrop-blur-sm flex-shrink-0">
               <Image
-                src="/waves-portrait.png"
+                src="/hero-portrait.png"
                 alt="Professional Portrait"
                 width={400}
                 height={500}

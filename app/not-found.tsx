@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 
 export default function NotFound() {
@@ -10,25 +9,25 @@ export default function NotFound() {
   >([]);
 
   const projects = [
-  {
-    title: "AI Content Automation",
-    category: "AUTOMATION",
-    color: "from-purple-500",
-    href: "/portfolio?project=ai-content-automation"
-  },
-  {
-    title: "Client Onboarding System",
-    category: "AUTOMATION",
-    color: "from-pink-500",
-    href: "/portfolio?project=client-onboarding-system",
-  },
-  {
-    title: "Brand Identity Design",
-    category: "DESIGN",
-    color: "from-orange-500",
-    href: "/portfolio?project=brand-identity-design",
-  },
-];
+    {
+      title: "AI Content Automation",
+      category: "AUTOMATION",
+      color: "from-purple-500",
+      href: "/portfolio?project=ai-content-automation",
+    },
+    {
+      title: "Client Onboarding System",
+      category: "AUTOMATION",
+      color: "from-pink-500",
+      href: "/#work",
+    },
+    {
+      title: "Brand Identity Design",
+      category: "DESIGN",
+      color: "from-orange-500",
+      href: "/portfolio?project=brand-identity-design",
+    },
+  ];
 
   useEffect(() => {
     const newParticles = Array.from({ length: 30 }).map((_, i) => ({
@@ -97,9 +96,9 @@ export default function NotFound() {
               Page Not Found
             </h1>
             <p className="text-base text-muted-foreground max-w-md">
-              This page doesn&apos;t exist yet, but that&apos;s okay! <br/>Let&apos;s
-              get you back to exploring amazing projects and automation
-              solutions.
+              This page doesn&apos;t exist yet, but that&apos;s okay! <br />
+              Let&apos;s get you back to exploring amazing projects and
+              automation solutions.
             </p>
           </div>
         </div>
@@ -143,19 +142,18 @@ export default function NotFound() {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-start pb-20">
-          <Button
-            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border border-pink-500/30 px-8 py-6 text-base rounded-lg"
-            asChild
+          <Link
+            href="/"
+            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border border-pink-500/30 px-10 py-3 text-base rounded-lg"
           >
-            <Link href="/">← Back to Home</Link>
-          </Button>
-          <Button
-            variant="outline"
-            className="border-border hover:bg-card px-8 py-6 text-base rounded-lg"
-            asChild
+            ← Back to Home
+          </Link>
+          <Link
+            href="/portfolio"
+            className="border border-border bg-card/50 hover:bg-card px-8 py-3 text-base rounded-lg"
           >
-            <Link href="/portfolio">View All Projects →</Link>
-          </Button>
+            View All Projects →
+          </Link>
         </div>
       </div>
 

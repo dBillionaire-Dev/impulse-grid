@@ -4,7 +4,7 @@ A beautiful, fully-featured portfolio website for an AI automation expert, desig
 
 ## Snapshot
 
-![Snapshot](public/snapshot.png)
+![Snapshot](public/og-image.png)
 
 ## Features
 
