@@ -18,8 +18,8 @@ export function OrbitingIcons() {
       delay: 1,
     },
     {
-      name: 'Supabase',
-      logoUrl: 'https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/supabase/default.svg',
+      name: 'Slack',
+      logoUrl: 'https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/slack/default.svg',
       borderColor: '#3ecf8e',
       bgColor: '#3ecf8e',
       delay: 2,
@@ -40,7 +40,7 @@ export function OrbitingIcons() {
     },
     {
       name: 'Photoshop',
-      logoUrl: 'https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/adobe-photoshop/default.svg',
+      logoUrl: 'https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/photoshop/default.svg',
       borderColor: '#1d9aff',
       bgColor: '#001e36',
       delay: 5,
@@ -66,6 +66,20 @@ export function OrbitingIcons() {
       bgColor: '#18a4ff',
       delay: 8,
     },
+    {
+      name: "PixelLab",
+      logoUrl: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/discord/default.svg",
+      borderColor: "#3b82f6",
+      bgColor: "#0f172a",
+      delay: 9,
+    },
+        {
+      name: "Canva",
+      logoUrl: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/canva/default.svg",
+      borderColor: "#0f172a",
+      bgColor: "#3b82f6",
+      delay: 10,
+    },
   ]
 
   return (
@@ -77,7 +91,7 @@ export function OrbitingIcons() {
         }
         
         .orbit-icon {
-          animation: orbit 25s linear infinite;
+          animation: orbit 11s linear infinite;
         }
       `}</style>
 

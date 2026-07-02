@@ -2,8 +2,9 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { Button } from '@/components/ui/button'
+import { buttonVariants } from '@/components/ui/button'
 import { ProjectModal } from './project-modal'
+import { cn } from '@/lib/utils'
 
 export function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<any>(null)
@@ -95,13 +96,15 @@ export function ProjectsSection() {
       </div>
 
       <div className="text-center">
-        <Button
-          variant="outline"
-          className="border-border hover:bg-card px-6 py-2 text-sm"
-          asChild
-        >
-          <Link href="/portfolio">View All Projects →</Link>
-        </Button>
+        <Link href="/portfolio" passHref>
+        </Link>
+        <Link href="portfolio" passHref
+            className={cn(
+            buttonVariants(),
+            'border-border bg-background px-6 py-2 text-sm hover:bg-card text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50',
+          )}>
+            View All Projects →
+          </Link>
       </div>
 
       {selectedProject && (

@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { ProjectModal } from '@/components/project-modal'
 
@@ -84,23 +83,22 @@ export default function Portfolio() {
     <main className="min-h-screen bg-background text-foreground">
       {/* Header */}
       <header className="sticky top-0 z-40 border-b border-border/50 bg-background/80 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 py-1 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition">
             <Image 
               src="/logo.png" 
               alt="IMPULSE GRID DIGITALS" 
               width={40} 
               height={40}
-              className="h-10 w-auto"
+              className="h-20 w-auto"
             />
-            <span className="text-sm font-bold text-foreground hidden sm:inline">IMPULSE</span>
           </Link>
-          <Button
+          <Link 
+            href="/" 
             className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border border-pink-500/30 px-6 py-2 rounded-lg"
-            asChild
-          >
-            <Link href="/">Back Home</Link>
-          </Button>
+            >
+              Back Home
+          </Link>
         </div>
       </header>
 
@@ -187,19 +185,18 @@ export default function Portfolio() {
             Let&apos;s discuss how I can help automate, design, and elevate your business.
           </p>
           <div className="flex gap-4 justify-center pt-4">
-            <Button
-              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border border-pink-500/30 px-8 py-6 text-base rounded-lg"
-              asChild
+            <Link 
+              href="/#contact"
+              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border border-pink-500/30 px-8 py-2 text-base rounded-lg"
             >
-              <Link href="/#contact">Get in Touch</Link>
-            </Button>
-            <Button
-              variant="outline"
-              className="border-border hover:bg-card px-8 py-6 text-base rounded-lg"
-              asChild
+              Get in Touch
+            </Link>
+            <Link 
+              href="/"
+              className="border border-border bg-card/50 hover:bg-card px-8 py-3 text-base rounded-lg"
             >
-              <Link href="/">Back Home</Link>
-            </Button>
+              Back Home
+            </Link>
           </div>
         </div>
 

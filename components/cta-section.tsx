@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from '@/lib/utils'
 
 export function CTASection() {
   return (
@@ -24,23 +24,26 @@ export function CTASection() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <Button
-              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border border-pink-500/30 px-8 py-6 text-base"
-              asChild
-            >
-              <a href="https://tally.so/r/q4YP12/" target="_blank">
+              <a 
+                href="https://tally.so/r/q4YP12/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(buttonVariants(), 
+                  "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border border-pink-500/30 px-8 py-6 text-base"
+                )}
+                >
                 Book a Strategy Call
               </a>
-            </Button>
-            <Button
-              variant="outline"
-              className="border-border hover:bg-card px-8 py-6 text-base"
-              asChild
-            >
-              <a href="mailto:impulse.grid@gmail.com" target="_blank">
+              <a 
+                href="mailto:impulse.grid@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(buttonVariants(), 
+                  'border-border bg-background hover:bg-card px-8 py-6 text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50',
+                )}
+                >
                 Send an Email
               </a>
-            </Button>
           </div>
 
           <p className="text-sm text-muted-foreground">

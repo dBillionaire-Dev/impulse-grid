@@ -109,7 +109,7 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <a
-                  href="https://linkedin.com/in/eliezer-ekunke"
+                  href="https://www.linkedin.com/in/eli-ekunke-6921112a5"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-foreground transition"
@@ -119,17 +119,17 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://twitter.com"
+                  href="https://x.com/impulse_grid"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-foreground transition"
                 >
-                  Twitter
+                  X (formerly Twitter)
                 </a>
               </li>
               <li>
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/impulse.grid"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-foreground transition"
@@ -151,7 +151,9 @@ export function Footer() {
         </div>
 
         <div className="border-t border-border/50 pt-8 flex items-center justify-between text-sm text-muted-foreground">
-          <p>&copy; 2026 Impulse Grid Digitals. All rights reserved.</p>
+          <p>
+            &copy; {new Date().getFullYear()} Impulse Grid Digitals. All rights reserved.
+          </p>
           <div className="flex gap-6">
             <Link
               href="https://nex.is-a.dev"
