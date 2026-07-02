@@ -1,9 +1,9 @@
-'use client'
+"use client";
 
-import { Button } from '@/components/ui/button'
-import Image from 'next/image'
-import Link from 'next/link'
-import { OrbitingIcons } from './orbiting-icons'
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import Link from "next/link";
+import { OrbitingIcons } from "./orbiting-icons";
 
 export function Hero() {
   return (
@@ -18,9 +18,11 @@ export function Hero() {
         {/* Left Content */}
         <div className="space-y-6 md:space-y-8">
           <div className="space-y-3 md:space-y-4">
-            <div className="inline-block px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-purple-500/30 bg-purple-500/10">
-              <p className="text-xs md:text-sm text-purple-300 uppercase tracking-wider">✨ AI Automation Expert • Designer • Strategist</p>
-            </div>
+            {/*<div className="inline-block px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-purple-500/30 bg-purple-500/10">
+              <p className="text-xs md:text-sm text-purple-300 uppercase tracking-wider">
+                AI Automation Expert • Designer • Strategist
+              </p>
+            </div>*/}
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight space-y-2">
               <div>
                 <span className="text-white">I</span>
@@ -38,33 +40,46 @@ export function Hero() {
           </div>
 
           <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-lg">
-            AI automation with n8n. Stunning designs that communicate. Systems that scale your business.
+            AI automation with n8n. Stunning designs that communicate. Systems
+            that scale your business.
           </p>
 
           <div className="space-y-2 md:space-y-3 text-xs md:text-sm">
             <div className="flex items-center gap-2">
               <span className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-green-500 flex-shrink-0" />
-              <span className="text-muted-foreground">AI & Workflow Automation</span>
+              <span className="text-muted-foreground">
+                AI & Workflow Automation
+              </span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-cyan-500 flex-shrink-0" />
-              <span className="text-muted-foreground">SaaS Tools & Integrations</span>
+              <span className="text-muted-foreground">
+                SaaS Tools & Integrations
+              </span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-amber-500 flex-shrink-0" />
-              <span className="text-muted-foreground">Process Optimization</span>
+              <span className="text-muted-foreground">
+                Process Optimization
+              </span>
             </div>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-4 w-full sm:w-auto">
-            <Button 
+            <Button
               className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border border-pink-500/30 px-6 md:px-8 py-4 md:py-6 text-sm md:text-base rounded-lg w-full sm:w-auto"
               asChild
             >
-              <a href="https://tally.so/r/q4YP12" target="_blank" rel="noopener noreferrer">Let&apos;s Work Together</a>
+              <a
+                href="https://tally.so/r/q4YP12"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Let&apos;s Work Together
+              </a>
             </Button>
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               className="border-border hover:bg-card px-6 md:px-8 py-4 md:py-6 text-sm md:text-base rounded-lg w-full sm:w-auto"
               asChild
             >
@@ -84,10 +99,10 @@ export function Hero() {
             <div className="hidden sm:block">
               <OrbitingIcons />
             </div>
-            
+
             {/* Gradient background glow */}
             <div className="absolute -inset-4 sm:-inset-8 bg-gradient-to-br from-purple-500/30 via-pink-500/20 to-blue-500/30 rounded-full blur-2xl sm:blur-3xl" />
-            
+
             {/* Portrait image - back of head */}
             <div className="relative z-20 rounded-full overflow-hidden w-48 h-64 sm:w-64 sm:h-80 mx-auto border-2 border-purple-500/50 bg-black/20 backdrop-blur-sm flex-shrink-0">
               <Image
@@ -103,5 +118,5 @@ export function Hero() {
         </div>
       </div>
     </section>
-  )
+  );
 }

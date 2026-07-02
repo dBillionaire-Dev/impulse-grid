@@ -1,11 +1,13 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { useEffect, useState } from 'react'
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
 
 export default function NotFound() {
-  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; delay: number }>>([])
+  const [particles, setParticles] = useState<
+    Array<{ id: number; x: number; y: number; delay: number }>
+  >([]);
 
   useEffect(() => {
     const newParticles = Array.from({ length: 30 }).map((_, i) => ({
@@ -13,9 +15,9 @@ export default function NotFound() {
       x: Math.random() * 100,
       y: Math.random() * 100,
       delay: Math.random() * 0.8,
-    }))
-    setParticles(newParticles)
-  }, [])
+    }));
+    setParticles(newParticles);
+  }, []);
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-hidden px-6 pt-20 relative">
@@ -45,13 +47,22 @@ export default function NotFound() {
         {/* 404 Display - Horizontal */}
         <div className="flex items-center justify-start gap-8 mb-16">
           <div className="flex gap-6 items-baseline">
-            <div className="text-[120px] md:text-[180px] font-black bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 bg-clip-text text-transparent leading-none animate-bounce" style={{ animationDelay: '0s' }}>
+            <div
+              className="text-[120px] md:text-[180px] font-black bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 bg-clip-text text-transparent leading-none animate-bounce"
+              style={{ animationDelay: "0s" }}
+            >
               4
             </div>
-            <div className="text-[120px] md:text-[180px] font-black bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 bg-clip-text text-transparent leading-none animate-bounce" style={{ animationDelay: '0.15s' }}>
+            <div
+              className="text-[120px] md:text-[180px] font-black bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 bg-clip-text text-transparent leading-none animate-bounce"
+              style={{ animationDelay: "0.15s" }}
+            >
               0
             </div>
-            <div className="text-[120px] md:text-[180px] font-black bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 bg-clip-text text-transparent leading-none animate-bounce" style={{ animationDelay: '0.3s' }}>
+            <div
+              className="text-[120px] md:text-[180px] font-black bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 bg-clip-text text-transparent leading-none animate-bounce"
+              style={{ animationDelay: "0.3s" }}
+            >
               4
             </div>
           </div>
@@ -62,10 +73,12 @@ export default function NotFound() {
           {/* Message Section */}
           <div className="flex-1 space-y-4">
             <h1 className="text-3xl md:text-4xl font-bold text-white">
-              Project Not Found
+              Page Not Found
             </h1>
             <p className="text-base text-muted-foreground max-w-md">
-              This page doesn&apos;t exist yet, but that&apos;s okay! Let&apos;s get you back to exploring amazing projects and automation solutions.
+              This page doesn&apos;t exist yet, but that&apos;s okay! Let&apos;s
+              get you back to exploring amazing projects and automation
+              solutions.
             </p>
           </div>
         </div>
@@ -74,36 +87,41 @@ export default function NotFound() {
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           {[
             {
-              title: 'AI Content Automation',
-              category: 'AUTOMATION',
-              color: 'from-purple-500',
+              title: "AI Content Automation",
+              category: "AUTOMATION",
+              color: "from-purple-500",
             },
             {
-              title: 'Client Onboarding System',
-              category: 'AUTOMATION',
-              color: 'from-pink-500',
+              title: "Client Onboarding System",
+              category: "AUTOMATION",
+              color: "from-pink-500",
             },
             {
-              title: 'Brand Identity Design',
-              category: 'DESIGN',
-              color: 'from-orange-500',
+              title: "Brand Identity Design",
+              category: "DESIGN",
+              color: "from-orange-500",
             },
           ].map((project, i) => (
-            <div
-              key={i}
-              className="group cursor-pointer"
-            >
-              <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-10 rounded-xl blur transition-opacity duration-300`} />
+            <div key={i} className="group cursor-pointer">
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-10 rounded-xl blur transition-opacity duration-300`}
+              />
               <div className="relative border border-border/50 group-hover:border-purple-500/50 rounded-xl p-8 bg-card/30 backdrop-blur-sm group-hover:bg-card/60 transition-all duration-300 h-full flex flex-col justify-between">
                 <div>
-                  <p className="text-xs text-purple-400 uppercase tracking-widest mb-3">{project.category}</p>
+                  <p className="text-xs text-purple-400 uppercase tracking-widest mb-3">
+                    {project.category}
+                  </p>
                   <h3 className="text-xl font-semibold text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 group-hover:bg-clip-text transition-all">
                     {project.title}
                   </h3>
                 </div>
                 <div className="mt-6 pt-6 border-t border-border/20 flex items-center justify-between">
-                  <span className="text-xs text-muted-foreground">View Project</span>
-                  <span className="text-purple-400 group-hover:translate-x-1 transition-transform">→</span>
+                  <span className="text-xs text-muted-foreground">
+                    View Project
+                  </span>
+                  <span className="text-purple-400 group-hover:translate-x-1 transition-transform">
+                    →
+                  </span>
                 </div>
               </div>
             </div>
@@ -130,7 +148,8 @@ export default function NotFound() {
 
       <style jsx>{`
         @keyframes float {
-          0%, 100% {
+          0%,
+          100% {
             transform: translateY(0px) translateX(0px);
           }
           25% {
@@ -145,5 +164,5 @@ export default function NotFound() {
         }
       `}</style>
     </div>
-  )
+  );
 }
