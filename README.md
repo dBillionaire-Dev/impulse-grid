@@ -1,6 +1,10 @@
-# NEX - AI Automation & Design Portfolio
+# Impulse Grid - AI Automation & Design Portfolio
 
-A beautiful, fully-featured portfolio website for AI automation experts, designers, and strategists. Built with Next.js 16, featuring an admin CMS, dark theme, and NEX brand styling.
+A beautiful, fully-featured portfolio website for an AI automation expert, designer, and strategist. Built with Next.js 16, TypeScript, Express, PostgreSQL and Drizzle ORM, featuring an admin CMS, dark theme, and technical brand styling.
+
+## Snapshot
+
+![Snapshot](public/snapshot.png)
 
 ## Features
 
@@ -34,7 +38,7 @@ A beautiful, fully-featured portfolio website for AI automation experts, designe
 1. Clone the repository:
 ```bash
 git clone <repository-url>
-cd nex-portfolio
+cd impulse-grid
 ```
 
 2. Install dependencies:
@@ -203,4 +207,4 @@ MIT License - feel free to use this for your portfolio!
 
 ---
 
-Built with ❤️ by NEX - AI Automation & Design
+Built with ❤️ by NexDev - AI Automation & Design
