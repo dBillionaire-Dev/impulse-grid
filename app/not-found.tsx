@@ -9,6 +9,27 @@ export default function NotFound() {
     Array<{ id: number; x: number; y: number; delay: number }>
   >([]);
 
+  const projects = [
+  {
+    title: "AI Content Automation",
+    category: "AUTOMATION",
+    color: "from-purple-500",
+    href: "/portfolio?project=ai-content-automation"
+  },
+  {
+    title: "Client Onboarding System",
+    category: "AUTOMATION",
+    color: "from-pink-500",
+    href: "/portfolio?project=client-onboarding-system",
+  },
+  {
+    title: "Brand Identity Design",
+    category: "DESIGN",
+    color: "from-orange-500",
+    href: "/portfolio?project=brand-identity-design",
+  },
+];
+
   useEffect(() => {
     const newParticles = Array.from({ length: 30 }).map((_, i) => ({
       id: i,
@@ -45,7 +66,7 @@ export default function NotFound() {
       {/* Content - Horizontal Layout */}
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* 404 Display - Horizontal */}
-        <div className="flex items-center justify-start gap-8 mb-16">
+        <div className="flex flex-col md:flex-row items-center md:items-start gap-8 mb-16">
           <div className="flex gap-6 items-baseline">
             <div
               className="text-[120px] md:text-[180px] font-black bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 bg-clip-text text-transparent leading-none animate-bounce"
@@ -68,7 +89,7 @@ export default function NotFound() {
           </div>
 
           {/* Divider line */}
-          <div className="h-32 w-1 bg-gradient-to-b from-purple-500/30 to-pink-500/30" />
+          <div className="w-32 h-1 md:w-1 md:h-32 bg-gradient-to-r md:bg-gradient-to-b from-purple-500/30 to-pink-500/30" />
 
           {/* Message Section */}
           <div className="flex-1 space-y-4">
@@ -76,55 +97,47 @@ export default function NotFound() {
               Page Not Found
             </h1>
             <p className="text-base text-muted-foreground max-w-md">
-              This page doesn&apos;t exist yet, but that&apos;s okay! Let&apos;s
+              This page doesn&apos;t exist yet, but that&apos;s okay! <br/>Let&apos;s
               get you back to exploring amazing projects and automation
               solutions.
             </p>
           </div>
         </div>
-
-        {/* Simulated Project Preview */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
-          {[
-            {
-              title: "AI Content Automation",
-              category: "AUTOMATION",
-              color: "from-purple-500",
-            },
-            {
-              title: "Client Onboarding System",
-              category: "AUTOMATION",
-              color: "from-pink-500",
-            },
-            {
-              title: "Brand Identity Design",
-              category: "DESIGN",
-              color: "from-orange-500",
-            },
-          ].map((project, i) => (
-            <div key={i} className="group cursor-pointer">
+        <div className="hidden md:grid md:grid-cols-3 gap-6 mb-12">
+          {projects.map((project) => (
+            <Link
+              key={project.href}
+              href={project.href}
+              className="group relative block"
+            >
+              {/* Hover glow */}
               <div
                 className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-10 rounded-xl blur transition-opacity duration-300`}
               />
+
+              {/* Card */}
               <div className="relative border border-border/50 group-hover:border-purple-500/50 rounded-xl p-8 bg-card/30 backdrop-blur-sm group-hover:bg-card/60 transition-all duration-300 h-full flex flex-col justify-between">
                 <div>
                   <p className="text-xs text-purple-400 uppercase tracking-widest mb-3">
                     {project.category}
                   </p>
+
                   <h3 className="text-xl font-semibold text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 group-hover:bg-clip-text transition-all">
                     {project.title}
                   </h3>
                 </div>
+
                 <div className="mt-6 pt-6 border-t border-border/20 flex items-center justify-between">
                   <span className="text-xs text-muted-foreground">
                     View Project
                   </span>
+
                   <span className="text-purple-400 group-hover:translate-x-1 transition-transform">
                     →
                   </span>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 

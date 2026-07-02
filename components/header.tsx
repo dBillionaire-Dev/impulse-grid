@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export function Header() {
   return (
@@ -50,13 +51,13 @@ export function Header() {
             Contact
           </Link>
         </div>
-
-        <Button
-          className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border border-pink-500/30"
-          asChild
-        >
-          <Link href="#contact">Let&apos;s Work Together</Link>
-        </Button>
+          <Link href="#contact" 
+            className={cn(
+            buttonVariants(),
+            "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border border-pink-500/30"
+          )}>
+            Let&apos;s Work Together
+          </Link>
       </nav>
     </header>
   );

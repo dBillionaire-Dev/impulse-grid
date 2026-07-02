@@ -1,13 +1,14 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { OrbitingIcons } from "./orbiting-icons";
+import { cn } from "@/lib/utils";
 
 export function Hero() {
   return (
-    <section className="min-h-screen flex items-center justify-center pt-20 px-6 relative overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center pt-25 px-6 relative overflow-hidden">
       {/* Animated background orbs */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl" />
@@ -18,11 +19,6 @@ export function Hero() {
         {/* Left Content */}
         <div className="space-y-6 md:space-y-8">
           <div className="space-y-3 md:space-y-4">
-            {/*<div className="inline-block px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-purple-500/30 bg-purple-500/10">
-              <p className="text-xs md:text-sm text-purple-300 uppercase tracking-wider">
-                AI Automation Expert • Designer • Strategist
-              </p>
-            </div>*/}
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight space-y-2">
               <div>
                 <span className="text-white">I</span>
@@ -66,24 +62,23 @@ export function Hero() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-4 w-full sm:w-auto">
-            <Button
-              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border border-pink-500/30 px-6 md:px-8 py-4 md:py-6 text-sm md:text-base rounded-lg w-full sm:w-auto"
-              asChild
+            <a
+              href="https://tally.so/r/q4YP12"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(buttonVariants(), 
+                "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border border-pink-500/30 px-6 md:px-8 py-4 md:py-6 text-sm md:text-base rounded-lg w-full sm:w-auto"
+              )}
             >
-              <a
-                href="https://tally.so/r/q4YP12"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Let&apos;s Work Together
-              </a>
-            </Button>
+              Let&apos;s Work Together
+            </a>
             <Button
               variant="outline"
               className="border-border hover:bg-card px-6 md:px-8 py-4 md:py-6 text-sm md:text-base rounded-lg w-full sm:w-auto"
-              asChild
             >
-              <Link href="/portfolio">See My Work →</Link>
+            <Link href="/portfolio">
+              See My Work →
+            </Link>
             </Button>
           </div>
 
@@ -103,7 +98,7 @@ export function Hero() {
             {/* Gradient background glow */}
             <div className="absolute -inset-4 sm:-inset-8 bg-gradient-to-br from-purple-500/30 via-pink-500/20 to-blue-500/30 rounded-full blur-2xl sm:blur-3xl" />
 
-            {/* Portrait image - back of head */}
+            {/* Portrait image */}
             <div className="relative z-20 rounded-full overflow-hidden w-48 h-64 sm:w-64 sm:h-80 mx-auto border-2 border-purple-500/50 bg-black/20 backdrop-blur-sm flex-shrink-0">
               <Image
                 src="/waves-portrait.png"
