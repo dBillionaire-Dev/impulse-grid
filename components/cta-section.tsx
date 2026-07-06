@@ -1,9 +1,11 @@
-"use client";
-
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from '@/lib/utils'
 
-export function CTASection() {
+interface CTASectionProps {
+  ctaText: string
+}
+
+export function CTASection({ ctaText }: CTASectionProps) {
   return (
     <section id="contact" className="relative py-20 px-6 max-w-7xl mx-auto">
       <div className="relative">
@@ -24,21 +26,21 @@ export function CTASection() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <a 
-                href="https://tally.so/r/q4YP12/" 
+              <a
+                href="https://tally.so/r/q4YP12/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={cn(buttonVariants(), 
+                className={cn(buttonVariants(),
                   "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border border-pink-500/30 px-8 py-6 text-base"
                 )}
                 >
-                Book a Strategy Call
+                {ctaText}
               </a>
-              <a 
+              <a
                 href="mailto:impulse.grid@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={cn(buttonVariants(), 
+                className={cn(buttonVariants(),
                   'border-border bg-background hover:bg-card px-8 py-6 text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50',
                 )}
                 >

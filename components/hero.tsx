@@ -1,12 +1,15 @@
-"use client";
-
 import { Button, buttonVariants } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { OrbitingIcons } from "./orbiting-icons";
 import { cn } from "@/lib/utils";
 
-export function Hero() {
+interface HeroProps {
+  heroTitle: string;
+  heroDescription: string;
+}
+
+export function Hero({ heroTitle, heroDescription }: HeroProps) {
   return (
     <section className="min-h-screen flex items-center justify-center pt-25 px-6 relative overflow-hidden">
       {/* Animated background orbs */}
@@ -19,25 +22,15 @@ export function Hero() {
         {/* Left Content */}
         <div className="space-y-6 md:space-y-8">
           <div className="space-y-3 md:space-y-4">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight space-y-2">
-              <div>
-                <span className="text-white">I</span>
-                <span className="text-purple-400 ml-3">Automate.</span>
-              </div>
-              <div>
-                <span className="text-white">I</span>
-                <span className="text-pink-400 ml-3">Design.</span>
-              </div>
-              <div>
-                <span className="text-white">I</span>
-                <span className="text-amber-400 ml-3">Elevate Brands.</span>
-              </div>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+              <span className="text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-amber-400 bg-clip-text">
+                {heroTitle}
+              </span>
             </h1>
           </div>
 
           <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-lg">
-            AI automation with n8n. Stunning designs that communicate. Systems
-            that scale your business.
+            {heroDescription}
           </p>
 
           <div className="space-y-2 md:space-y-3 text-xs md:text-sm">
