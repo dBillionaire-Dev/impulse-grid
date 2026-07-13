@@ -120,7 +120,7 @@ export default function ToolsPage() {
             </div>
             <input
               type="url"
-              placeholder="Icon URL (e.g. https://cdn.jsdelivr.net/.../postgresql.svg)"
+              placeholder="Icon URL (e.g. https://cdn.jsdelivr.net/.../n8n.svg)"
               value={formData.icon}
               onChange={(e) =>
                 setFormData({ ...formData, icon: e.target.value })
@@ -135,7 +135,7 @@ export default function ToolsPage() {
           <div className="grid grid-cols-2 gap-4">
             <input
               type="text"
-              placeholder="Name (e.g. PostgreSQL)"
+              placeholder="Name (e.g. Airtable)"
               value={formData.name}
               onChange={(e) =>
                 setFormData({ ...formData, name: e.target.value })
@@ -144,7 +144,7 @@ export default function ToolsPage() {
             />
             <input
               type="text"
-              placeholder="Category (e.g. Backend)"
+              placeholder="Category (e.g. Automation, Design, Work)"
               value={formData.category}
               onChange={(e) =>
                 setFormData({ ...formData, category: e.target.value })

@@ -35,7 +35,7 @@ export function AuthForm({ mode }: { mode: "sign-in" | "sign-up" }) {
       return;
     }
 
-    router.push("/admin");
+    router.push("/console");
     router.refresh();
   };
 
@@ -108,10 +108,10 @@ export function AuthForm({ mode }: { mode: "sign-in" | "sign-up" }) {
         <p className="text-sm text-muted-foreground text-center mt-6">
           {isSignUp ? "Already have an account? " : "Don't have an account? "}
           <Link
-            href={isSignUp ? "/sign-in" : "/sign-up"}
+            href={isSignUp ? "/portal" : "/"}
             className="text-foreground font-medium underline-offset-4 hover:underline"
           >
-            {isSignUp ? "Sign in" : "Sign up"}
+            {isSignUp ? "Sign in" : "Go Home"}
           </Link>
         </p>
       </Card>

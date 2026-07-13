@@ -1,7 +1,7 @@
 "use server";
 
 // Public, read-only data for the homepage. Unlike app/actions/portfolio.ts,
-// nothing here requires a session, visitors to the public site aren't
+// nothing here requires a session — visitors to the public site aren't
 // logged in. Since this is a single-owner portfolio, we don't filter by
 // userId; we only filter by `published` so the owner can hide draft items
 // from the live site while still editing them in /admin.
@@ -20,17 +20,36 @@ import {
 import { eq, desc } from "drizzle-orm";
 
 export async function getPublicPortfolioContent() {
-  const rows = await db.select().from(portfolioContent).limit(1);
-  return (
-    rows[0] ?? {
-      heroTitle: "I Automate. I Design. I Elevate Brands.",
+  // Multiple portfolio_content rows can exist if more than one account was
+  // ever used to save (e.g. during testing/sign-up experiments). Since this
+  // is meant to be a single-owner site, always surface whichever row was
+  // most recently updated rather than an arbitrary/stale one.
+  const rows = await db
+    .select()
+    .from(portfolioContent)
+    .orderBy(desc(portfolioContent.updatedAt))
+    .limit(1);
+  const row = rows[0];
+  const fallbackImage = "/hero-portrait.png";
+
+  if (!row) {
+    return {
+      heroTitle: "I Automate. IDesign. I Elevate Brands.",
       heroDescription:
         "AI automation with n8n. Stunning designs that communicate. Systems that scale your business.",
+      heroImageUrl: fallbackImage,
       aboutText: "",
       ctaText: "Let's Work Together",
       socialLinks: {} as Record<string, string>,
-    }
-  );
+    };
+  }
+
+  return {
+    ...row,
+    // `??` doesn't catch empty strings — guard explicitly so a blank saved
+    // value doesn't crash next/image on the homepage.
+    heroImageUrl: row.heroImageUrl?.trim() ? row.heroImageUrl : fallbackImage,
+  };
 }
 
 export async function getPublicServices() {
@@ -46,7 +65,7 @@ export async function getPublicProjects() {
     .select()
     .from(projects)
     .where(eq(projects.published, true))
-    .orderBy(desc(projects.createdAt));
+    .orderBy(projects.order);
 }
 
 export async function getPublicTestimonials() {

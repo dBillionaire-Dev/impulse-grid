@@ -1,74 +1,83 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { Button } from '@/components/ui/button'
-import { getPackages, createPackage, updatePackage, deletePackage } from '@/app/actions/portfolio'
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  getPackages,
+  createPackage,
+  updatePackage,
+  deletePackage,
+} from "@/app/actions/portfolio";
 
-const emptyForm = { title: '', description: '', featuresInput: '' }
+const emptyForm = { title: "", description: "", featuresInput: "" };
 
 export default function PackagesPage() {
-  const [packages, setPackages] = useState<any[]>([])
-  const [loading, setLoading] = useState(true)
-  const [showForm, setShowForm] = useState(false)
-  const [editingId, setEditingId] = useState<string | null>(null)
-  const [formData, setFormData] = useState(emptyForm)
-  const [saving, setSaving] = useState(false)
+  const [packages, setPackages] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [showForm, setShowForm] = useState(false);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [formData, setFormData] = useState(emptyForm);
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    loadPackages()
-  }, [])
+    loadPackages();
+  }, []);
 
   async function loadPackages() {
-    setLoading(true)
-    const data = await getPackages()
-    setPackages(data)
-    setLoading(false)
+    setLoading(true);
+    const data = await getPackages();
+    setPackages(data);
+    setLoading(false);
   }
 
   function openCreateForm() {
-    setEditingId(null)
-    setFormData(emptyForm)
-    setShowForm(true)
+    setEditingId(null);
+    setFormData(emptyForm);
+    setShowForm(true);
   }
 
   function openEditForm(pkg: any) {
-    setEditingId(pkg.id)
+    setEditingId(pkg.id);
     setFormData({
       title: pkg.title,
       description: pkg.description,
-      featuresInput: Array.isArray(pkg.features) ? pkg.features.join('\n') : '',
-    })
-    setShowForm(true)
+      featuresInput: Array.isArray(pkg.features) ? pkg.features.join("\n") : "",
+    });
+    setShowForm(true);
   }
 
   async function handleSave() {
-    if (!formData.title || !formData.description) return
-    setSaving(true)
+    if (!formData.title || !formData.description) return;
+    setSaving(true);
     const features = formData.featuresInput
-      .split('\n')
+      .split("\n")
       .map((f) => f.trim())
-      .filter(Boolean)
+      .filter(Boolean);
 
     try {
-      const payload = { title: formData.title, description: formData.description, features }
+      const payload = {
+        title: formData.title,
+        description: formData.description,
+        features,
+      };
       if (editingId) {
-        await updatePackage(editingId, payload)
+        await updatePackage(editingId, payload);
       } else {
-        await createPackage(payload)
+        await createPackage(payload);
       }
-      setFormData(emptyForm)
-      setEditingId(null)
-      setShowForm(false)
-      await loadPackages()
+      setFormData(emptyForm);
+      setEditingId(null);
+      setShowForm(false);
+      await loadPackages();
     } finally {
-      setSaving(false)
+      setSaving(false);
     }
   }
 
   async function handleDelete(id: string) {
-    if (confirm('Delete this package?')) {
-      await deletePackage(id)
-      await loadPackages()
+    if (confirm("Delete this package?")) {
+      await deletePackage(id);
+      await loadPackages();
     }
   }
 
@@ -77,13 +86,15 @@ export default function PackagesPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-4xl font-bold text-white">Packages</h1>
-          <p className="text-muted-foreground mt-2">Manage your service packages / pricing tiers</p>
+          <p className="text-muted-foreground mt-2">
+            Manage your service packages / pricing tiers
+          </p>
         </div>
         <Button
           onClick={() => (showForm ? setShowForm(false) : openCreateForm())}
           className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
         >
-          {showForm ? 'Cancel' : 'Add Package'}
+          {showForm ? "Cancel" : "Add Package"}
         </Button>
       </div>
 
@@ -93,20 +104,28 @@ export default function PackagesPage() {
             type="text"
             placeholder="Package Title (e.g. Starter)"
             value={formData.title}
-            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, title: e.target.value })
+            }
             className="w-full bg-background border border-border rounded-lg px-4 py-2 text-foreground text-sm"
           />
           <textarea
             placeholder="Description"
             value={formData.description}
-            onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, description: e.target.value })
+            }
             rows={3}
             className="w-full bg-background border border-border rounded-lg px-4 py-2 text-foreground text-sm"
           />
           <textarea
-            placeholder={'One feature per line, e.g.\nUnlimited revisions\n2 week turnaround'}
+            placeholder={
+              "One feature per line, e.g.\nUnlimited revisions\n2 week turnaround"
+            }
             value={formData.featuresInput}
-            onChange={(e) => setFormData({ ...formData, featuresInput: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, featuresInput: e.target.value })
+            }
             rows={4}
             className="w-full bg-background border border-border rounded-lg px-4 py-2 text-foreground text-sm"
           />
@@ -115,7 +134,11 @@ export default function PackagesPage() {
             disabled={saving}
             className="w-full bg-gradient-to-r from-purple-600 to-pink-600 disabled:opacity-50"
           >
-            {saving ? 'Saving...' : editingId ? 'Update Package' : 'Create Package'}
+            {saving
+              ? "Saving..."
+              : editingId
+                ? "Update Package"
+                : "Create Package"}
           </Button>
         </div>
       )}
@@ -125,7 +148,11 @@ export default function PackagesPage() {
       ) : packages.length === 0 ? (
         <div className="border border-dashed border-border rounded-lg p-12 text-center">
           <p className="text-muted-foreground mb-4">No packages yet</p>
-          <Button onClick={openCreateForm} variant="outline" className="border-border">
+          <Button
+            onClick={openCreateForm}
+            variant="outline"
+            className="border-border"
+          >
             Add your first package
           </Button>
         </div>
@@ -146,7 +173,12 @@ export default function PackagesPage() {
                 </ul>
               )}
               <div className="flex gap-2 pt-2">
-                <Button onClick={() => openEditForm(pkg)} variant="outline" size="sm" className="border-border">
+                <Button
+                  onClick={() => openEditForm(pkg)}
+                  variant="outline"
+                  size="sm"
+                  className="border-border"
+                >
                   Edit
                 </Button>
                 <Button
@@ -163,5 +195,5 @@ export default function PackagesPage() {
         </div>
       )}
     </div>
-  )
+  );
 }

@@ -1,64 +1,73 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { Button } from '@/components/ui/button'
-import { getStats, createStat, updateStat, deleteStat } from '@/app/actions/portfolio'
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  getStats,
+  createStat,
+  updateStat,
+  deleteStat,
+} from "@/app/actions/portfolio";
 
-const emptyForm = { label: '', value: '', suffix: '' }
+const emptyForm = { label: "", value: "", suffix: "" };
 
 export default function StatsPage() {
-  const [stats, setStats] = useState<any[]>([])
-  const [loading, setLoading] = useState(true)
-  const [showForm, setShowForm] = useState(false)
-  const [editingId, setEditingId] = useState<string | null>(null)
-  const [formData, setFormData] = useState(emptyForm)
-  const [saving, setSaving] = useState(false)
+  const [stats, setStats] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [showForm, setShowForm] = useState(false);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [formData, setFormData] = useState(emptyForm);
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    loadStats()
-  }, [])
+    loadStats();
+  }, []);
 
   async function loadStats() {
-    setLoading(true)
-    const data = await getStats()
-    setStats(data)
-    setLoading(false)
+    setLoading(true);
+    const data = await getStats();
+    setStats(data);
+    setLoading(false);
   }
 
   function openCreateForm() {
-    setEditingId(null)
-    setFormData(emptyForm)
-    setShowForm(true)
+    setEditingId(null);
+    setFormData(emptyForm);
+    setShowForm(true);
   }
 
   function openEditForm(stat: any) {
-    setEditingId(stat.id)
-    setFormData({ label: stat.label, value: stat.value, suffix: stat.suffix ?? '' })
-    setShowForm(true)
+    setEditingId(stat.id);
+    setFormData({
+      label: stat.label,
+      value: stat.value,
+      suffix: stat.suffix ?? "",
+    });
+    setShowForm(true);
   }
 
   async function handleSave() {
-    if (!formData.label || !formData.value) return
-    setSaving(true)
+    if (!formData.label || !formData.value) return;
+    setSaving(true);
     try {
       if (editingId) {
-        await updateStat(editingId, formData)
+        await updateStat(editingId, formData);
       } else {
-        await createStat(formData)
+        await createStat(formData);
       }
-      setFormData(emptyForm)
-      setEditingId(null)
-      setShowForm(false)
-      await loadStats()
+      setFormData(emptyForm);
+      setEditingId(null);
+      setShowForm(false);
+      await loadStats();
     } finally {
-      setSaving(false)
+      setSaving(false);
     }
   }
 
   async function handleDelete(id: string) {
-    if (confirm('Delete this statistic?')) {
-      await deleteStat(id)
-      await loadStats()
+    if (confirm("Delete this statistic?")) {
+      await deleteStat(id);
+      await loadStats();
     }
   }
 
@@ -67,13 +76,15 @@ export default function StatsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-4xl font-bold text-white">Statistics</h1>
-          <p className="text-muted-foreground mt-2">Manage the metrics shown on your portfolio</p>
+          <p className="text-muted-foreground mt-2">
+            Manage the metrics shown on your portfolio
+          </p>
         </div>
         <Button
           onClick={() => (showForm ? setShowForm(false) : openCreateForm())}
           className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
         >
-          {showForm ? 'Cancel' : 'Add Statistic'}
+          {showForm ? "Cancel" : "Add Statistic"}
         </Button>
       </div>
 
@@ -83,7 +94,9 @@ export default function StatsPage() {
             type="text"
             placeholder="Label (e.g. Projects Delivered)"
             value={formData.label}
-            onChange={(e) => setFormData({ ...formData, label: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, label: e.target.value })
+            }
             className="w-full bg-background border border-border rounded-lg px-4 py-2 text-foreground text-sm"
           />
           <div className="grid grid-cols-2 gap-4">
@@ -91,14 +104,18 @@ export default function StatsPage() {
               type="text"
               placeholder="Value (e.g. 50)"
               value={formData.value}
-              onChange={(e) => setFormData({ ...formData, value: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, value: e.target.value })
+              }
               className="bg-background border border-border rounded-lg px-4 py-2 text-foreground text-sm"
             />
             <input
               type="text"
               placeholder="Suffix (e.g. +, %)"
               value={formData.suffix}
-              onChange={(e) => setFormData({ ...formData, suffix: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, suffix: e.target.value })
+              }
               className="bg-background border border-border rounded-lg px-4 py-2 text-foreground text-sm"
             />
           </div>
@@ -107,7 +124,11 @@ export default function StatsPage() {
             disabled={saving}
             className="w-full bg-gradient-to-r from-purple-600 to-pink-600 disabled:opacity-50"
           >
-            {saving ? 'Saving...' : editingId ? 'Update Statistic' : 'Create Statistic'}
+            {saving
+              ? "Saving..."
+              : editingId
+                ? "Update Statistic"
+                : "Create Statistic"}
           </Button>
         </div>
       )}
@@ -117,7 +138,11 @@ export default function StatsPage() {
       ) : stats.length === 0 ? (
         <div className="border border-dashed border-border rounded-lg p-12 text-center">
           <p className="text-muted-foreground mb-4">No statistics yet</p>
-          <Button onClick={openCreateForm} variant="outline" className="border-border">
+          <Button
+            onClick={openCreateForm}
+            variant="outline"
+            className="border-border"
+          >
             Add your first statistic
           </Button>
         </div>
@@ -134,7 +159,12 @@ export default function StatsPage() {
               </p>
               <p className="text-sm text-muted-foreground">{stat.label}</p>
               <div className="flex gap-2 pt-2">
-                <Button onClick={() => openEditForm(stat)} variant="outline" size="sm" className="border-border">
+                <Button
+                  onClick={() => openEditForm(stat)}
+                  variant="outline"
+                  size="sm"
+                  className="border-border"
+                >
                   Edit
                 </Button>
                 <Button
@@ -151,5 +181,5 @@ export default function StatsPage() {
         </div>
       )}
     </div>
-  )
+  );
 }
