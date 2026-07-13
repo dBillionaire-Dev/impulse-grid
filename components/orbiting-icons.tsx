@@ -93,12 +93,39 @@ export function OrbitingIcons() {
         .orbit-icon {
           animation: orbit 11s linear infinite;
         }
+
+        @keyframes ring-pulse {
+          0%, 100% { opacity: 0.35; }
+          50% { opacity: 0.65; }
+        }
+
+        .orbit-ring {
+          animation: ring-pulse 4s ease-in-out infinite;
+        }
       `}</style>
 
-      {/* Orbit circle guides (subtle) */}
+      {/* Orbit ring guides — radar-style concentric circles matching the
+          icons' orbit path */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="absolute rounded-full border border-purple-500/5" style={{ width: '360px', height: '360px' }} />
-        <div className="absolute rounded-full border border-pink-500/5" style={{ width: '320px', height: '320px' }} />
+        <div
+          className="orbit-ring absolute rounded-full border border-purple-400/40"
+          style={{ width: '180px', height: '180px', animationDelay: '0s' }}
+        />
+        <div
+          className="orbit-ring absolute rounded-full border border-pink-400/35"
+          style={{ width: '260px', height: '260px', animationDelay: '0.6s' }}
+        />
+        <div
+          className="orbit-ring absolute rounded-full border border-purple-400/30"
+          style={{ width: '320px', height: '320px', animationDelay: '1.2s' }}
+        />
+        <div
+          className="orbit-ring absolute rounded-full border border-pink-400/25"
+          style={{ width: '380px', height: '380px', animationDelay: '1.8s' }}
+        />
+        {/* Faint crosshair lines for the radar look */}
+        <div className="absolute w-full h-px bg-gradient-to-r from-transparent via-purple-400/15 to-transparent" />
+        <div className="absolute h-full w-px bg-gradient-to-b from-transparent via-purple-400/15 to-transparent" />
       </div>
 
       {/* Orbiting tech icons */}

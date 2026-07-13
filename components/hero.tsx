@@ -1,12 +1,45 @@
-"use client";
-
 import { Button, buttonVariants } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { OrbitingIcons } from "./orbiting-icons";
 import { cn } from "@/lib/utils";
 
-export function Hero() {
+interface HeroProps {
+  heroTitle: string;
+  heroDescription: string;
+  heroImageUrl: string;
+}
+
+// Each line of heroTitle gets its own color, cycling through this palette.
+// Matches the original design: white leading word ("I"), colored remainder.
+const LINE_COLORS = ["text-purple-400", "text-pink-400", "text-amber-400"];
+
+function HeroHeading({ heroTitle }: { heroTitle: string }) {
+  const lines = heroTitle
+    .split("\n")
+    .map((l) => l.trim())
+    .filter(Boolean);
+
+  return (
+    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+      {lines.map((line, i) => {
+        const [first, ...rest] = line.split(" ");
+        const restText = rest.join(" ");
+        return (
+          <span key={i} className="block">
+            <span className="text-white">{first}</span>{" "}
+            <span className={LINE_COLORS[i % LINE_COLORS.length]}>{restText}</span>
+          </span>
+        );
+      })}
+    </h1>
+  );
+}
+
+export function Hero({ heroTitle, heroDescription, heroImageUrl }: HeroProps) {
+  // Defensive fallback — even if upstream data somehow sends an empty
+  // string, never pass that to next/image (it throws).
+  const imageSrc = heroImageUrl?.trim() ? heroImageUrl : "/hero-portrait.png";
   return (
     <section className="min-h-screen flex items-center justify-center pt-25 px-6 relative overflow-hidden">
       {/* Animated background orbs */}
@@ -19,25 +52,11 @@ export function Hero() {
         {/* Left Content */}
         <div className="space-y-6 md:space-y-8">
           <div className="space-y-3 md:space-y-4">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight space-y-2">
-              <div>
-                <span className="text-white">I</span>
-                <span className="text-purple-400 ml-3">Automate.</span>
-              </div>
-              <div>
-                <span className="text-white">I</span>
-                <span className="text-pink-400 ml-3">Design.</span>
-              </div>
-              <div>
-                <span className="text-white">I</span>
-                <span className="text-amber-400 ml-3">Elevate Brands.</span>
-              </div>
-            </h1>
+            <HeroHeading heroTitle={heroTitle} />
           </div>
 
           <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-lg">
-            AI automation with n8n. Stunning designs that communicate. Systems
-            that scale your business.
+            {heroDescription}
           </p>
 
           <div className="space-y-2 md:space-y-3 text-xs md:text-sm">
@@ -95,17 +114,18 @@ export function Hero() {
             </div>
 
             {/* Gradient background glow */}
-            <div className="absolute -inset-4 sm:-inset-8 bg-gradient-to-br from-purple-500/30 via-pink-500/20 to-blue-500/30 rounded-full blur-2xl sm:blur-3xl" />
+            <div className="absolute -inset-4 sm:-inset-8 bg-gradient-to-br from-purple-500/20 via-pink-500/10 to-blue-500/20 rounded-full blur-2xl sm:blur-3xl" />
 
-            {/* Portrait image */}
-            <div className="relative z-20 rounded-full overflow-hidden w-48 h-64 sm:w-64 sm:h-80 mx-auto border-2 border-purple-500/50 bg-black/20 backdrop-blur-sm flex-shrink-0">
+            {/* Portrait image — transparent PNG, no crop/border, sits directly
+                on the page background so it blends in naturally */}
+            <div className="relative z-20 w-56 sm:w-72 mx-auto">
               <Image
-                src="/hero-portrait.png"
+                src={imageSrc}
                 alt="Professional Portrait"
                 width={400}
                 height={500}
                 priority
-                className="w-full h-full object-cover"
+                className="w-full h-auto object-contain"
               />
             </div>
           </div>
