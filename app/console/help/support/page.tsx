@@ -14,7 +14,7 @@ export default function SupportPage() {
           </p>
         </div>
         <Link
-          href="/admin"
+          href="/console"
           className={cn(
             buttonVariants({ variant: "outline" }),
             "border-border",
@@ -46,7 +46,7 @@ export default function SupportPage() {
           <p className="text-sm text-muted-foreground leading-relaxed">
             If something isn't saving or showing up, check the{" "}
             <Link
-              href="/admin/help/documentation"
+              href="/console/help/documentation"
               className="text-purple-400 hover:text-purple-300"
             >
               Documentation
