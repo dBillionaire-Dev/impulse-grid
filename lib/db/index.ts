@@ -1,25 +1,23 @@
-// import { drizzle } from 'drizzle-orm/node-postgres'
-// import { Pool } from 'pg'
-// import * as schema from './schema'
-
-// export const pool = new Pool({
-//   connectionString: process.env.DATABASE_URL,
-// })
-
-// export const db = drizzle(pool, { schema })
-
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
 import * as schema from "./schema";
 
-export const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  // Force IPv4 resolution. On networks where the OS resolver falls back to
-  // NAT64-synthesized IPv6 addresses (common on Ubuntu/WSL with
-  // systemd-resolved), Node's own DNS resolution can intermittently fail
-  // with EAI_AGAIN even though `nslookup`/`ping` succeed fine. `pg` passes
-  // this straight through to Node's `net.connect`, which accepts `family`.
-  family: 4,
-} as any);
+declare global {
+  var pgPool: Pool | undefined;
+}
+
+const pool =
+  global.pgPool ??
+  new Pool({
+    connectionString: process.env.DATABASE_URL,
+    family: 4,
+    max: 3,
+    idleTimeoutMillis: 30000,
+    connectionTimeoutMillis: 10000,
+  });
+
+if (process.env.NODE_ENV !== "production") {
+  global.pgPool = pool;
+}
 
 export const db = drizzle(pool, { schema });
