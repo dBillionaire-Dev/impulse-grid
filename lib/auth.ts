@@ -3,7 +3,7 @@ import { pool } from "@/lib/db";
 
 export const auth = betterAuth({
   database: pool,
-  baseURL: process.env.BETTER_AUTH_URL ?? "https://impulse-grid.vercel.app",
+  baseURL: process.env.BETTER_AUTH_URL ?? "https://eliekunke.vercel.app",
     emailAndPassword: {
       enabled: true,
       autoSignIn: true,
