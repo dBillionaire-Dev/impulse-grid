@@ -57,7 +57,7 @@ export default function DocumentationPage() {
           </p>
         </div>
         <Link
-          href="/admin"
+          href="/console"
           className={cn(
             buttonVariants({ variant: "outline" }),
             "border-border",
