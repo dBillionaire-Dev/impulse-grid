@@ -23,12 +23,9 @@ export function ProcessSection({ steps }: ProcessSectionProps) {
         </h2>
       </div>
 
-      <div
-        className="grid gap-4 md:gap-2 relative"
-        style={{ gridTemplateColumns: `repeat(${Math.min(steps.length, 5)}, minmax(0, 1fr))` }}
-      >
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 md:gap-6 relative">
         {/* Connecting line */}
-        <div className="hidden md:block absolute top-12 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 z-0" />
+        <div className="hidden lg:block absolute top-12 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 z-0" />
 
         {steps.map((step, i) => (
           <div key={step.id} className="relative z-10">
@@ -49,9 +46,9 @@ export function ProcessSection({ steps }: ProcessSectionProps) {
               </div>
 
               {/* Content */}
-              <div className="text-center space-y-2">
+              <div className="text-center space-y-2 max-w-xs mx-auto">
                 <h3 className="text-xl font-semibold text-white">{step.title}</h3>
-                <p className="text-sm text-muted-foreground">{step.description}</p>
+                <p className="text-sm leading-6 text-muted-foreground">{step.description}</p>
               </div>
             </div>
           </div>
